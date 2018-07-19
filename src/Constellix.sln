@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Constellix.Tests", "Constellix.Tests\Constellix.Tests.csproj", "{29F08ABB-90E7-47B5-9F5E-0CEB8931F9DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Constellix.Dns", "Constellix.Dns\Constellix.Dns.csproj", "{69A75AAE-DD57-429D-A7A0-A6922025B460}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29F08ABB-90E7-47B5-9F5E-0CEB8931F9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F08ABB-90E7-47B5-9F5E-0CEB8931F9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F08ABB-90E7-47B5-9F5E-0CEB8931F9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F08ABB-90E7-47B5-9F5E-0CEB8931F9DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69A75AAE-DD57-429D-A7A0-A6922025B460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69A75AAE-DD57-429D-A7A0-A6922025B460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69A75AAE-DD57-429D-A7A0-A6922025B460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69A75AAE-DD57-429D-A7A0-A6922025B460}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {920B6593-B51B-4E76-BBC4-E447F9A1A8E9}
+	EndGlobalSection
+EndGlobal

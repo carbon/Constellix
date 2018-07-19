@@ -1,0 +1,1 @@
+dotnet pack ./src/Constellix.Dns -c Release -o ./../../release/Constellix.Dns

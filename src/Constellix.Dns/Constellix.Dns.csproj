@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Constellix.Dns</AssemblyName>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.3.0</Version>
+    
+    <!-- Package Details-->
+    <Description>A modern .NETStandard Library for the Constellix DNS API</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Carbon.Json" Version="1.7.0" />
+  </ItemGroup>
+
+</Project>
