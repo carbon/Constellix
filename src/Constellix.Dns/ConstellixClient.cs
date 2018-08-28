@@ -25,7 +25,7 @@ namespace Constellix.Dns
         {
             this.apiKey = apiKey ?? throw new ArgumentNullException(nameof(apiKey));
             this.secretKey = secretKey ?? throw new ArgumentNullException(nameof(secretKey));
-            this.httpClient = this.httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
         public async Task<Domain[]> ListDomainsAsync()
@@ -33,7 +33,6 @@ namespace Constellix.Dns
             var json = await SendAsync(new HttpRequestMessage(HttpMethod.Get, baseUrl + "/domains"));
 
             return json.ToArrayOf<Domain>();
-
         }
 
         public async Task<CreateDomainResult[]> CreateDomainAsync(CreateDomainRequest request)
@@ -47,7 +46,6 @@ namespace Constellix.Dns
         {
             return GetAsync<Domain>("/domains/" + id);
         }
-
 
         public async Task UpdateDomainAsync(UpdateDomainRequest request)
         {
@@ -70,6 +68,8 @@ namespace Constellix.Dns
 
         public async Task<Record[]> CreateRecordAsync(CreateRecordRequest request)
         {
+            if (request is null) throw new ArgumentNullException(nameof(request));
+
             var type = request.Type.ToString().ToLower();
 
             var result = await PostAsync($"/domains/{request.DomainId}/records/{type}", request);
@@ -84,9 +84,36 @@ namespace Constellix.Dns
             }
         }
 
+        public async Task<UpdateRecordResult> UpdateRecordAsync(UpdateRecordRequest request)
+        {
+            if (request is null) throw new ArgumentNullException(nameof(request));
+
+            string type = request.Type.ToString().ToLower();
+
+            // /domains/{{DomainId}}/records/cname/{{CNAMERecordId}}
+
+            var path = $"/domains/{request.DomainId}/records/{type}/{request.RecordId}";
+
+            try
+            {
+                var result = await PutAsync(path, request);
+
+                return result.As<UpdateRecordResult>();
+            }
+            catch (ConstellixException ex)
+            {
+                if (ex.Message == "Record not found")
+                {
+                    throw new RecordNotFoundException(request.Type, request.RecordId);
+                }
+
+                throw ex;
+            }
+        }
+
         public async Task<Record[]> CreateMXRecordsAsync(CreateMXRecordRequest request)
         {
-           
+            if (request is null) throw new ArgumentNullException(nameof(request));
 
             var result = await PostAsync($"/domains/{request.DomainId}/records/mx", request);
 
@@ -105,12 +132,9 @@ namespace Constellix.Dns
             var type = request.RecordType.ToString().ToLower();
 
             await DeleteAsync($"/domains/{request.DomainId}/records/{type}/{request.RecordId}");
-
         }
-        
-        /*
-        public void UpdateRecordAsync() { }
 
+        /*
         public void CreateTemplateAsync() { }
 
         public void UpdateTemplateAsync() { }
@@ -145,7 +169,7 @@ namespace Constellix.Dns
 
         private async Task<JsonNode> PostAsync(string path, object data)
         {
-            var jsonText = JsonNode.FromObject(data).ToString();
+            var jsonText = JsonNode.FromObject(data).ToString(pretty: false);
 
             var request = new HttpRequestMessage(HttpMethod.Post, baseUrl + path)
             {
@@ -157,7 +181,7 @@ namespace Constellix.Dns
 
         private async Task<JsonNode> PutAsync(string path, object data)
         {
-            var jsonText = JsonNode.FromObject(data).ToString();
+            var jsonText = JsonNode.FromObject(data).ToString(pretty: false);
 
             var request = new HttpRequestMessage(HttpMethod.Put, baseUrl + path)
             {
@@ -182,7 +206,7 @@ namespace Constellix.Dns
                 hmacValue = hmac.ComputeHash(Encoding.UTF8.GetBytes(timestamp));
             }
 
-            var securityToken = string.Join(":", new[] { apiKey, Convert.ToBase64String(hmacValue), timestamp });
+            string securityToken = string.Join(":", new[] { apiKey, Convert.ToBase64String(hmacValue), timestamp });
 
             request.Headers.TryAddWithoutValidation("x-cns-security-token", securityToken);
 
@@ -192,6 +216,11 @@ namespace Constellix.Dns
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    if (responseText.Length > 0 && responseText[0] == '{')
+                    {
+                        throw new ConstellixException(JsonObject.Parse(responseText).As<ErrorResult>());
+                    }
+
                     throw new Exception(responseText);
                 }
 
