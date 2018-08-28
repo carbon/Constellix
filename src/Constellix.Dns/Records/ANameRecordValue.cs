@@ -18,5 +18,10 @@ namespace Constellix.Dns
 
         [DataMember(Name = "disableFlag", EmitDefaultValue = false)]
         public bool DisableFlag { get; set; }
+        
+        public static implicit operator ANameRecordValue(string value)
+        {
+            return new ANameRecordValue(value);
+        }
     }
 }
