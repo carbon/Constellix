@@ -2,9 +2,9 @@
 
 namespace Constellix.Dns
 {
-    public class RecordNotFoundException : Exception
+    public sealed class RecordNotFoundException : Exception
     {
         public RecordNotFoundException(RecordType type, long recordId)
-            : base(type.ToString() + "#" + recordId + " was not found") { }
+            : base("constellix:records/" + type.ToString() + "/" + recordId + " was not found") { }
     }
 }

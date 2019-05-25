@@ -1,6 +1,6 @@
 ﻿namespace Constellix.Dns
 {
-    public class DeleteRecordRequest
+    public sealed class DeleteRecordRequest
     {
         public DeleteRecordRequest(long domainId, RecordType type, long recordId)
         {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable disable
+
+using System;
 using System.Runtime.Serialization;
 
 namespace Constellix.Dns
@@ -10,7 +12,7 @@ namespace Constellix.Dns
         public ANameRecordValue(string value, bool disableFlag = false)
         {
             Value = value ?? throw new ArgumentNullException(nameof(value));
-            DisableFlag = false;
+            DisableFlag = disableFlag;
         }
 
         [DataMember(Name = "value")]

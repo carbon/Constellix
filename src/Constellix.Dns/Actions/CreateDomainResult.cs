@@ -1,4 +1,6 @@
-﻿namespace Constellix.Dns
+﻿#nullable disable
+
+namespace Constellix.Dns
 {
     public class CreateDomainResult
     {

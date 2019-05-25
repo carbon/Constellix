@@ -7,5 +7,4 @@
         public const string Pools = "pools";
         public const string RoundRobinFailover = "roundRobinFailover";
     }
-
 }

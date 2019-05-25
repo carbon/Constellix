@@ -1,10 +1,11 @@
-﻿using System.Runtime.Serialization;
+﻿#nullable disable
+
+using System.Runtime.Serialization;
 
 using Carbon.Json;
 
 namespace Constellix.Dns
 {
-
     public class Record
     {
         [DataMember(Name = "id")]

@@ -17,7 +17,7 @@ namespace Constellix.Dns
         public long Id { get; set; }
 
         [DataMember(Name = "soa", EmitDefaultValue = false)]
-        public Soa Soa { get; set; }
+        public Soa? Soa { get; set; }
 
         [DataMember(Name = "vanityNameServer", EmitDefaultValue = false)]
         public long VanityNameServer { get; set; }

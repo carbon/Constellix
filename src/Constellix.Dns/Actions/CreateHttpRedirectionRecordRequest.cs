@@ -2,7 +2,7 @@
 
 namespace Constellix.Dns
 {
-    public class CreateHttpRedirectionRecordRequest : CreateRecordRequest
+    public sealed class CreateHttpRedirectionRecordRequest : CreateRecordRequest
     {
         public CreateHttpRedirectionRecordRequest(long domainId, string name, string url, int ttl = 3600)
             : base(domainId, name, ttl)
@@ -22,6 +22,5 @@ namespace Constellix.Dns
         // 3 = 302 Redirect
         [DataMember(Name = "redirectTypeId")]
         public int RedirectTypeId { get; set; }
-
     }
 }

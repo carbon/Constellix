@@ -5,10 +5,11 @@ namespace Constellix.Dns
 {
     public sealed class UpdateCnameRecordRequest : UpdateRecordRequest
     {
-        public UpdateCnameRecordRequest(long domainId, long recordId, string name, string host)
+        public UpdateCnameRecordRequest(long domainId, long recordId, string name, string host, int ttl = 0)
            : base(domainId, recordId, name)
         {
             Host = host ?? throw new ArgumentNullException(nameof(host));
+            Ttl = ttl;
         }
 
         [IgnoreDataMember]

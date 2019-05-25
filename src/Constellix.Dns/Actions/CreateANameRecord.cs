@@ -2,7 +2,6 @@
 
 namespace Constellix.Dns
 {
-
     public class CreateANameRecordRequest : CreateRecordRequest
     {
         public CreateANameRecordRequest(long domainId, string name, int ttl = 3600, params ANameRecordValue[] values)
