@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Constellix.Dns
 {
-    public class CreateDomainRequest
+    public sealed class CreateDomainRequest
     {
         public CreateDomainRequest(params string[] names)
         {

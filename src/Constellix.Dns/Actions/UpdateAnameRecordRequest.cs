@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
@@ -10,10 +10,9 @@ namespace Constellix.Dns
             RoundRobin = value;
         }
 
-        [IgnoreDataMember]
+        [JsonIgnore]
         public override RecordType Type => RecordType.ANAME;
 
-        [DataMember(Name = "roundRobin")]
         public ANameRecordValue[] RoundRobin { get; }
     }
 }

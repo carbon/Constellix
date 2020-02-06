@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
@@ -10,10 +10,9 @@ namespace Constellix.Dns
             Host = host;
         }
 
-        [IgnoreDataMember]
+        [JsonIgnore]
         public override RecordType Type => RecordType.CNAME;
 
-        [DataMember(Name = "host")]
         public string Host { get; set; }
     }
 }

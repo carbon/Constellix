@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
@@ -6,21 +6,19 @@ namespace Constellix.Dns
     {
         public UpdateDomainRequest() { }
 
-        public UpdateDomainRequest(long id, Soa soa, long vanityNameServer = 0)
+        public UpdateDomainRequest(long id, Soa soa, long? vanityNameServer)
         {
             Id = id;
             Soa = soa;
             VanityNameServer = vanityNameServer;
         }
 
-        [IgnoreDataMember]
+        [JsonIgnore]
         public long Id { get; set; }
 
-        [DataMember(Name = "soa", EmitDefaultValue = false)]
         public Soa? Soa { get; set; }
 
-        [DataMember(Name = "vanityNameServer", EmitDefaultValue = false)]
-        public long VanityNameServer { get; set; }
+        public long? VanityNameServer { get; set; }
 
         // NAME...
     }

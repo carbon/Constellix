@@ -1,8 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿#nullable disable
+
+using System.Runtime.Serialization;
 
 namespace Constellix.Dns
 {
-    public class CaaRecordValue
+    public sealed class CaaRecordValue
     {
         [DataMember(Name = "flag")]
         public int Flag { get; set; }

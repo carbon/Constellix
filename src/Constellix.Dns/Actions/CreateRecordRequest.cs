@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
@@ -17,16 +17,14 @@ namespace Constellix.Dns
             Ttl = ttl;
         }
 
-        [IgnoreDataMember]
+        [JsonIgnore]
         public long DomainId { get; }
 
-        [DataMember(Name = "name")]
         public string Name { get; }
 
-        [DataMember(Name = "ttl", EmitDefaultValue = false)]
-        public int Ttl { get; }
+        public int? Ttl { get; }
 
-        [IgnoreDataMember]
+        [JsonIgnore]
         public abstract RecordType Type { get; }
     }
 }

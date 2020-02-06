@@ -1,8 +1,9 @@
 ﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
-    public class CreateANameRecordRequest : CreateRecordRequest
+    public sealed class CreateANameRecordRequest : CreateRecordRequest
     {
         public CreateANameRecordRequest(long domainId, string name, int ttl = 3600, params ANameRecordValue[] values)
             : base(domainId, name, ttl)
@@ -10,11 +11,9 @@ namespace Constellix.Dns
             RoundRobin = values;
         }
 
-        [IgnoreDataMember]
+        [JsonIgnore]
         public override RecordType Type => RecordType.ANAME;
 
-        [DataMember(Name = "roundRobin")]
         public ANameRecordValue[] RoundRobin { get; }
-
     }
 }

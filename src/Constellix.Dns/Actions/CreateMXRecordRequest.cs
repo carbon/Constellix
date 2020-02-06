@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
@@ -11,10 +11,9 @@ namespace Constellix.Dns
             RoundRobin = values ?? throw new ArgumentNullException(nameof(values));
         }
 
-        [IgnoreDataMember]
+        [JsonIgnore]
         public override RecordType Type => RecordType.MX;
 
-        [DataMember(Name = "roundRobin")]
         public MXRecordValue[] RoundRobin { get; }
     }
 

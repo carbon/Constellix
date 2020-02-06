@@ -2,7 +2,7 @@
 
 namespace Constellix.Dns
 {
-    public class CreateDomainResult
+    public sealed class CreateDomainResult
     {
         public long Id { get; set; }
 

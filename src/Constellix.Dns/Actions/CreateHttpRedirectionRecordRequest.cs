@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
@@ -11,16 +11,14 @@ namespace Constellix.Dns
             RedirectTypeId = 301;
         }
 
-        [IgnoreDataMember]
+        [JsonIgnore]
         public override RecordType Type => RecordType.HTTPRedirection;
 
-        [DataMember(Name = "url")]
         public string Url { get; set; }
 
         // 1 = HiddenFrameMasked
         // 2 = 301 Redirect
         // 3 = 302 Redirect
-        [DataMember(Name = "redirectTypeId")]
         public int RedirectTypeId { get; set; }
     }
 }

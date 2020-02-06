@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace Constellix.Dns
 {
-    public class ARecordValue
+    public sealed class ARecordValue
     {
         public ARecordValue() { }
 

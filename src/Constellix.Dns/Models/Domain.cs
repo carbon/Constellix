@@ -31,9 +31,9 @@ namespace Constellix.Dns
         [DataMember(Name = "soa", EmitDefaultValue = false)]
         public Soa Soa { get; set; }
         
-        public DateTime CreatedTs { get; set; }
+        public DateTimeOffset CreatedTs { get; set; }
 
-        public DateTime ModifiedTs { get; set; }
+        public DateTimeOffset ModifiedTs { get; set; }
 
         public string[] DomainTags { get; set; }
 
