@@ -1,4 +1,4 @@
-﻿using Carbon.Json;
+﻿using System.Text.Json;
 using Xunit;
 
 namespace Constellix.Dns.Tests
@@ -10,7 +10,7 @@ namespace Constellix.Dns.Tests
         {
             var text = @"{""errors"":[""Record not found""]}";
 
-            var result = JsonObject.Parse(text).As<ErrorResult>();
+            var result = JsonSerializer.Deserialize<ErrorResult>(text, JsonHelper.Options);
 
             Assert.Equal("Record not found", result.Errors[0]);
 

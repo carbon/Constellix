@@ -1,17 +1,11 @@
-﻿using System;
-using Carbon.Json;
+﻿using System.Text.Json;
+
 using Xunit;
 
-namespace Constellix.Dns
+namespace Constellix.Dns.Tests
 {
     public class CreateDomainResultTests
     {
-        [Fact]
-        public void Test()
-        {
-            throw new System.Exception(DateTimeOffset.FromUnixTimeMilliseconds(1489401874402).ToString());
-        }
-
         [Fact]
         public void A()
         {
@@ -26,7 +20,7 @@ namespace Constellix.Dns
   }
 ]";
 
-            var result = JsonNode.Parse(text).ToArrayOf<CreateDomainResult>();
+            var result = JsonSerializer.Deserialize<CreateDomainResult[]>(text, JsonHelper.Options);
 
             Assert.Equal(16046, result[0].Id);
             Assert.Equal(16047, result[1].Id);
