@@ -114,6 +114,10 @@ namespace Constellix.Dns.Tests
 
             Assert.Equal(3, domains.Length);
 
+            var domain_0 = domains[0];
+
+            Assert.Equal(string.Empty, domain_0.Note);
+
             var domain_2 = domains[2];
 
             Assert.Equal(14739,                     domain_2.Id);
@@ -122,6 +126,7 @@ namespace Constellix.Dns.Tests
             Assert.Equal("ACTIVE",                  domain_2.Status);
             Assert.Equal(86400,                     domain_2.Soa.Ttl);
             Assert.Equal(180,                       domain_2.Soa.NegCache);       
+            Assert.Equal(1,                         domain_2.NameserverGroup.Value);
             Assert.Equal(nameservers,               domain_2.Nameservers);
             Assert.Equal(4,                         domain_2.Version);
             Assert.Equal(1499169336,                domain_2.CreatedTs.ToUnixTimeSeconds());
