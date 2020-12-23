@@ -1,83 +1,59 @@
 ﻿#nullable disable
 
 using System;
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
     public class Domain
     {
-        [DataMember(Name = "id")]
+        [JsonPropertyName("id")]
         public long Id { get; set; }
 
-        [DataMember(Name = "name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [DataMember(Name = "typeId")]
+        [JsonPropertyName("typeId")]
         public int TypeId { get; set; }
 
-        [DataMember(Name = "hasGtdRegions")]
+        [JsonPropertyName("hasGtdRegions")]
         public bool HasGtdRegions { get; set; }
 
-        [DataMember(Name = "hasGeoIP")]
+        [JsonPropertyName("hasGeoIP")]
         public bool HasGeoIP { get; set; }
 
-        [DataMember(Name = "nameserverGroup", EmitDefaultValue = false)]
-        public int NameserverGroup { get; set; }
+        [JsonPropertyName("nameserverGroup")]
+        public int? NameserverGroup { get; set; }
 
-        [DataMember(Name = "nameservers", EmitDefaultValue = false)]
+        [JsonPropertyName("nameservers")]
         public string[] Nameservers { get; set; }
 
-        [DataMember(Name = "soa", EmitDefaultValue = false)]
-        public Soa Soa { get; set; }
+#nullable enable
+
+        [JsonPropertyName("soa")]
+        public Soa? Soa { get; set; }
         
         public DateTimeOffset CreatedTs { get; set; }
 
         public DateTimeOffset ModifiedTs { get; set; }
 
-        public string[] DomainTags { get; set; }
+        public string[]? DomainTags { get; set; }
 
-        [DataMember(Name = "folder")]
-        public string Folder { get; set; }
+        [JsonPropertyName("folder")]
+        public string? Folder { get; set; }
 
-        [DataMember(Name = "note", EmitDefaultValue = false)]
-        public string Note { get; set; }
+        [JsonPropertyName("note")]
+        public string? Note { get; set; }
 
         public int Version { get; set; }
 
         public string Status { get; set; }
 
-        [DataMember(Name = "tags", EmitDefaultValue = false)]
-        public string[] Tags { get; set; }
+        [JsonPropertyName("tags")]
+        public string[]? Tags { get; set; }
 
-
-        [DataMember(Name = "vanityNameServerDetails", EmitDefaultValue = false)]
-        public VanityNameServerDetails VanityNameServerDetails { get; set; }
-    }
-
-    /*
-   
-      "vanityNameServer": 399,
-      "vanityNameServerName": "dn3.net",
-      */
-
-    public class VanityNameServerDetails
-    {
-        public long Id { get; set; }
-
-        public string Name { get; set; }
-
-        public bool IsDefault { get; set; }
-
-        public bool IsPublic { get; set; }
-
-        public string[] NameServers { get; set; }
-
-        public long NameserverGroup { get; set; }
-
-        public string NameserverGroupName { get; set; }
-
-        public string NameserversListString { get; set; }
+        [JsonPropertyName("vanityNameServerDetails")]
+        public VanityNameServerDetails? VanityNameServerDetails { get; set; }
     }
 
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
@@ -10,7 +10,7 @@ namespace Constellix.Dns
             Names = names ?? throw new ArgumentNullException(nameof(names));
         }
 
-        [DataMember(Name = "names")]
+        [JsonPropertyName("names")]
         public string[] Names { get;  }
     }
 }

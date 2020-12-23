@@ -1,27 +1,27 @@
 ﻿#nullable disable
 
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
     public class Template
     {
-        [DataMember(Name = "id")]
+        [JsonPropertyName("id")]
         public long Id { get; set; }
 
-        [DataMember(Name = "name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [DataMember(Name = "domain")]
+        [JsonPropertyName("domain")]
         public long Domain { get; set; }
 
-        [DataMember(Name = "hasGtdRegions")]
+        [JsonPropertyName("hasGtdRegions")]
         public bool HasGtdRegions { get; set; }
 
-        [DataMember(Name = "hasGeoIP")]
+        [JsonPropertyName("hasGeoIP")]
         public bool HasGeoIP { get; set; }
 
-        [DataMember(Name = "version")]
+        [JsonPropertyName("version")]
         public int Version { get; set; }
     }
 }

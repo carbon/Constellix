@@ -11,7 +11,7 @@ namespace Constellix.Dns
     {
         private const string baseUrl = "https://api.dns.constellix.com/v1";  // include version
 
-        private static readonly JsonSerializerOptions jso = new JsonSerializerOptions { 
+        private static readonly JsonSerializerOptions jso = new () { 
             IgnoreNullValues = true, 
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
@@ -51,12 +51,12 @@ namespace Constellix.Dns
 
         public async Task UpdateDomainAsync(UpdateDomainRequest request)
         {
-            await PutAsync<object>("/domains/" + request.Id, request);
+            await PutAsync<object>("/domains/" + request.Id, request).ConfigureAwait(false);
         }
 
         public async Task DeleteDomainAsync(long id)
         {
-            await DeleteAsync("/domains/" + id);
+            await DeleteAsync("/domains/" + id).ConfigureAwait(false);
         }
 
         // TODO: Type, GtdRegion
@@ -74,7 +74,7 @@ namespace Constellix.Dns
 
             try
             {
-                return await PostAsync<Record[]>($"/domains/{request.DomainId}/records/{type}", request);
+                return await PostAsync<Record[]>($"/domains/{request.DomainId}/records/{type}", request).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -109,7 +109,7 @@ namespace Constellix.Dns
         {
             try
             {
-                return await PostAsync<Record[]>($"/domains/{request.DomainId}/records/mx", request);
+                return await PostAsync<Record[]>($"/domains/{request.DomainId}/records/mx", request).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -121,7 +121,7 @@ namespace Constellix.Dns
         {
             var type = request.RecordType.ToString().ToLower();
 
-            await DeleteAsync($"/domains/{request.DomainId}/records/{type}/{request.RecordId}");
+            await DeleteAsync($"/domains/{request.DomainId}/records/{type}/{request.RecordId}").ConfigureAwait(false);
         }
 
         /*
@@ -144,7 +144,7 @@ namespace Constellix.Dns
         {
             var request = new HttpRequestMessage(HttpMethod.Delete, baseUrl + path);
 
-            await SendAsync<object>(request);
+            await SendAsync<object>(request).ConfigureAwait(false);
         }
 
         private async Task<T> GetAsync<T>(string path)
@@ -165,7 +165,7 @@ namespace Constellix.Dns
                 Content = new StringContent(jsonText, Encoding.UTF8, "application/json")
             };
 
-            return await SendAsync<TResult>(request);
+            return await SendAsync<TResult>(request).ConfigureAwait(false);
         }
 
         private async Task<TResult> PutAsync<TResult>(string path, object data)
@@ -177,7 +177,7 @@ namespace Constellix.Dns
                 Content = new StringContent(jsonText, Encoding.UTF8, "application/json")
             };
 
-            return await SendAsync<TResult>(request);
+            return await SendAsync<TResult>(request).ConfigureAwait(false);
         }
 
         private async Task<TResult> SendAsync<TResult>(HttpRequestMessage request)
@@ -202,15 +202,16 @@ namespace Constellix.Dns
 
             request.Headers.TryAddWithoutValidation("x-cns-security-token", securityToken);
 
-            using HttpResponseMessage response = await httpClient.SendAsync(request);
+            using HttpResponseMessage response = await httpClient.SendAsync(request).ConfigureAwait(false);
 
-            string responseText = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
             {
+                string responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
                 if (responseText.Length > 0 && responseText[0] == '{')
                 {
-                    throw new ConstellixException(JsonSerializer.Deserialize<ErrorResult>(responseText, jso));
+                    throw new ConstellixException(JsonSerializer.Deserialize<ErrorResult>(responseText, jso)!);
                 }
 
                 throw new Exception(responseText);
@@ -222,7 +223,9 @@ namespace Constellix.Dns
                 return default!;
             }
 
-            return JsonSerializer.Deserialize<TResult>(responseText, jso);
+            using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+
+            return (await JsonSerializer.DeserializeAsync<TResult>(responseStream, jso).ConfigureAwait(false))!;
         }
     }
 }

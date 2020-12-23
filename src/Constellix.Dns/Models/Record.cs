@@ -42,14 +42,14 @@ namespace Constellix.Dns
 
         // A : [ ip, .. ]
         // CNAME: 
-        // [DataMember(Name = "value")]
+        // [JsonPropertyName("value")]
         // public JsonNode Value { get; set; }
 
         public JsonElement RoundRobin { get; set; }
 
         // ???
-        [DataMember(Name = "hardlinkFlag", EmitDefaultValue = false)]
-        public bool HardlinkFlag { get; set; }
+        [JsonPropertyName("hardlinkFlag")]
+        public bool? HardlinkFlag { get; set; }
 
         #region Redirect Records
 

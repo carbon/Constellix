@@ -1,24 +1,24 @@
 ﻿#nullable disable
 
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
     public sealed class CaaRecordValue
     {
-        [DataMember(Name = "flag")]
+        [JsonPropertyName("flag")]
         public int Flag { get; set; }
 
-        [DataMember(Name = "tag")]
+        [JsonPropertyName("tag")]
         public string Tag { get; set; }
 
-        [DataMember(Name = "data")]
+        [JsonPropertyName("data")]
         public string Data { get; set; }
 
-        [DataMember(Name = "caaProviderId")]
+        [JsonPropertyName("caaProviderId")]
         public int CaaProviderId { get; set; }
 
-        [DataMember(Name = "disableFlag", EmitDefaultValue = false)]
-        public bool DisableFlag { get; set; }
+        [JsonPropertyName("disableFlag")]
+        public bool? DisableFlag { get; set; }
     }
 }

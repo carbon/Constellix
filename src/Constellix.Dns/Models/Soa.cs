@@ -1,33 +1,33 @@
 ﻿#nullable disable
 
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
     public class Soa
     {        
-        [DataMember(Name = "primaryNameserver")]
+        [JsonPropertyName("primaryNameserver")]
         public string PrimaryNameserver { get; set; }
 
-        [DataMember(Name = "email")]
+        [JsonPropertyName("email")]
         public string Email { get; set; }
         
-        [DataMember(Name = "ttl")]
+        [JsonPropertyName("ttl")]
         public int Ttl { get; set; }
 
-        [DataMember(Name = "serial")]
+        [JsonPropertyName("serial")]
         public int Serial { get; set; }
 
-        [DataMember(Name = "refresh")]
+        [JsonPropertyName("refresh")]
         public int Refresh { get; set; }
 
-        [DataMember(Name = "retry")]
+        [JsonPropertyName("retry")]
         public int Retry { get; set; }
 
-        [DataMember(Name = "expire")]
+        [JsonPropertyName("expire")]
         public int Expire { get; set; }
 
-        [DataMember(Name = "negCache")]
+        [JsonPropertyName("negCache")]
         public int NegCache { get; set; }
     }
 

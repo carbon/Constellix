@@ -1,7 +1,7 @@
 ﻿#nullable disable
 
 using System;
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
@@ -15,10 +15,10 @@ namespace Constellix.Dns
             DisableFlag = disableFlag;
         }
 
-        [DataMember(Name = "value")]
+        [JsonPropertyName("value")]
         public string Value { get; set; }
 
-        [DataMember(Name = "disableFlag", EmitDefaultValue = false)]
-        public bool DisableFlag { get; set; }
+        [JsonPropertyName("disableFlag")]
+        public bool? DisableFlag { get; set; }
     }
 }
