@@ -101,7 +101,7 @@ namespace Constellix.Dns
                     throw new RecordNotFoundException(request.Type, request.RecordId);
                 }
 
-                throw ex;
+                throw;
             }
         }
 

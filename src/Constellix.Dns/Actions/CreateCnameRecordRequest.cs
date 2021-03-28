@@ -13,6 +13,6 @@ namespace Constellix.Dns
         [JsonIgnore]
         public override RecordType Type => RecordType.CNAME;
 
-        public string Host { get; set; }
+        public string Host { get; init; }
     }
 }

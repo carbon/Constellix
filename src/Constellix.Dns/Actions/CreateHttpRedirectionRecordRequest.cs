@@ -14,11 +14,11 @@ namespace Constellix.Dns
         [JsonIgnore]
         public override RecordType Type => RecordType.HTTPRedirection;
 
-        public string Url { get; set; }
+        public string Url { get; init; }
 
         // 1 = HiddenFrameMasked
         // 2 = 301 Redirect
         // 3 = 302 Redirect
-        public int RedirectTypeId { get; set; }
+        public int RedirectTypeId { get; init; }
     }
 }
