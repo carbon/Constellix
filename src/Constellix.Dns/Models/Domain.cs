@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
-    public class Domain
+    public sealed class Domain
     {
         [JsonPropertyName("id")]
         public long Id { get; init; }

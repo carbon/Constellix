@@ -14,9 +14,9 @@ namespace Constellix.Dns
             DisableFlag = disableFlag;
         }
 
-        public string Value { get; set; }
+        public string Value { get; init; }
 
-        public bool? DisableFlag { get; set; }
+        public bool? DisableFlag { get; init; }
         
         public static implicit operator ANameRecordValue(string value)
         {

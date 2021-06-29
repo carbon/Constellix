@@ -2,8 +2,8 @@
 
 namespace Constellix.Dns
 {
-    public class UpdateRecordResult
+    public sealed class UpdateRecordResult
     {
-        public string Success { get; set; }
+        public string Success { get; init; }
     }
 }

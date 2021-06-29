@@ -1,67 +1,66 @@
 ﻿#nullable disable
 
-using System.Runtime.Serialization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Constellix.Dns
 {
-    public class Record
+    public sealed class Record
     {
-        public long Id { get; set; }
+        public long Id { get; init; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public RecordType Type { get; set; }
+        public RecordType Type { get; init; }
 
-        public string RecordType { get; set; }
+        public string RecordType { get; init; }
 
-        public string Name { get; set; }
+        public string Name { get; init; }
 
-        public string RecordOption { get; set; }
+        public string RecordOption { get; init; }
 
-        public bool? NoAnswer { get; set; }
+        public bool? NoAnswer { get; init; }
 
-        public int Ttl { get; set; }
+        public int Ttl { get; init; }
         
         // TODO: Geolocation
 
-        public string Note { get; set; }
+        public string Note { get; init; }
 
-        public int GtdRegion { get; set; }
+        public int GtdRegion { get; init; }
 
-        public long ParentId { get; set; }
+        public long ParentId { get; init; }
 
         // e.g. domain
-        public string Parent { get; set; }
+        public string Parent { get; init; }
 
         // e.g. Domain
-        public string Source { get; set; }
+        public string Source { get; init; }
 
         // milliseconds since 1970
-        public long ModifiedTs { get; set; }
+        public long ModifiedTs { get; init; }
 
         // A : [ ip, .. ]
         // CNAME: 
         // [JsonPropertyName("value")]
         // public JsonNode Value { get; set; }
 
-        public JsonElement RoundRobin { get; set; }
+        public JsonElement RoundRobin { get; init; }
 
         // ???
         [JsonPropertyName("hardlinkFlag")]
-        public bool? HardlinkFlag { get; set; }
+        public bool? HardlinkFlag { get; init; }
 
         #region Redirect Records
 
-        public string Url { get; set; }
+        public string Url { get; init; }
 
-        public int? RedirectTypeId { get; set; }
+        public int? RedirectTypeId { get; init; }
 
         #endregion
 
         #region CNAME Records
 
-        public string Host { get; set; }
+        public string Host { get; init; }
 
         #endregion
     }

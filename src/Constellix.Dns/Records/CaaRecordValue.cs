@@ -7,18 +7,18 @@ namespace Constellix.Dns
     public sealed class CaaRecordValue
     {
         [JsonPropertyName("flag")]
-        public int Flag { get; set; }
+        public int Flag { get; init; }
 
         [JsonPropertyName("tag")]
-        public string Tag { get; set; }
+        public string Tag { get; init; }
 
         [JsonPropertyName("data")]
-        public string Data { get; set; }
+        public string Data { get; init; }
 
         [JsonPropertyName("caaProviderId")]
-        public int CaaProviderId { get; set; }
+        public int CaaProviderId { get; init; }
 
         [JsonPropertyName("disableFlag")]
-        public bool? DisableFlag { get; set; }
+        public bool? DisableFlag { get; init; }
     }
 }

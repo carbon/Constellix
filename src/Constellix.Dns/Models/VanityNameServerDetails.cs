@@ -4,20 +4,20 @@ namespace Constellix.Dns
 {
     public sealed class VanityNameServerDetails
     {
-        public long Id { get; set; }
+        public long Id { get; init; }
 
-        public string Name { get; set; }
+        public string Name { get; init; }
 
-        public bool IsDefault { get; set; }
+        public bool IsDefault { get; init; }
 
-        public bool IsPublic { get; set; }
+        public bool IsPublic { get; init; }
 
-        public string[] NameServers { get; set; }
+        public string[] NameServers { get; init; }
 
-        public long NameserverGroup { get; set; }
+        public long NameserverGroup { get; init; }
 
-        public string NameserverGroupName { get; set; }
+        public string NameserverGroupName { get; init; }
 
-        public string NameserversListString { get; set; }
+        public string NameserversListString { get; init; }
     }
 }

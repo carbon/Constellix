@@ -17,12 +17,12 @@ namespace Constellix.Dns
         }
 
         [JsonPropertyName("value")]
-        public string Value { get; set; }
+        public string Value { get; init; }
 
         [JsonPropertyName("level")]
-        public int Level { get; set; }
+        public int Level { get; init; }
 
         [JsonPropertyName("disableFlag")]
-        public bool? DisableFlag { get; set; }
+        public bool? DisableFlag { get; init; }
     }
 }
